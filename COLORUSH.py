@@ -304,7 +304,7 @@ def prepare_game_workspace():
     pygame.init()
     pygame.display.set_caption("COLORUSH")
     main_dir = os.path.split(os.path.abspath(__file__))[0]
-    file = os.path.join(main_dir, 'data', 'alien2.png')
+    file = os.path.join(main_dir, 'alien2.png')
     surfaceicon = pygame.image.load(file)
     icon = pygame.transform.scale(surfaceicon, (32, 32))
     pygame.display.set_icon(icon)
