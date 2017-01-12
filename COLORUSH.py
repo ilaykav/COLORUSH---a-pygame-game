@@ -86,11 +86,12 @@ def seem_impresive():
      print bin(bla2*bla2), bla, bla+bla2
 
 def draw_pause_menu():
-    #load the texts of the pause menu
-    load_text(screen, (255, 255, 255), font, 327, 320, "+   =")
-
+    
     pause_box = pygame.Surface((500,300))
     load_shape(screen, (50, 50, 50), 75, 100, pause_box)
+
+    #load the texts of the pause menu
+    load_text(screen, (255, 255, 255), font, 327, 320, "+   =")
 
     #load pause menu object
     pause_box = pygame.Surface((50,50))
