@@ -1,1 +1,0 @@
-pyg.exe COLORUSH.py
