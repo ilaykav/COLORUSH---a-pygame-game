@@ -14,12 +14,16 @@ you_win, you_lose = False, False
 grey_counter = 0
 pause = False
 screen = 0
-black = (255, 255, 255)
 
 # TODO: use PyCharm Code -> Reformat code, Auto-Indent lines & optimize imports - V
 
 # TODO: run pycharm inspect project and fix - V
 
+
+class Veriables():
+    white, black, grey, red, green, blue, light_blue, yellow, pink = (255, 255, 255), (0, 0, 0), (100, 100, 100), \
+                                                                     (255, 0, 0), (0, 255, 0),\
+                                                (0, 0, 255), (0, 255, 255), (255, 255, 0), (255, 0, 255)
 
 def update_presents():
     global total_score, set_lose_2, you_lose, you_win, grey_counter, screen, fill_box_2, fill_box_1, i, \
@@ -30,7 +34,7 @@ def update_presents():
     if len(presents) != 0:
         for ex_present in presents:
             # TODO: move (255, 255, 255) to variable - V
-            if ex_present.color != black:
+            if ex_present.color != Veriables.white:
                 if you_lose and set_lose_2:
                     ex_present.set_lose()
                     set_lose_2 = False
@@ -82,9 +86,9 @@ def update_death_balls():
         for ball in balls:
             circle_surface = pygame.Surface((30, 30))
             circle_outside = pygame.draw.circle(circle_surface, (220, 0, 20), (15, 15), 15)
-            circle_inside = pygame.draw.circle(circle_surface, (0, 0, 0), (15, 15), 12)
+            circle_inside = pygame.draw.circle(circle_surface, Veriables.black, (15, 15), 12)
             circle = circle_surface.convert()
-            circle.set_colorkey((0, 0, 0))
+            circle.set_colorkey(Veriables.black)
             screen.blit(circle, (ball.x, ball.y + i))
             ball.update()
 
@@ -109,28 +113,28 @@ def draw_pause_menu():
     load_shape(screen, (50, 50, 50), 75, 100, pause_box)
 
     # load the texts of the pause menu
-    load_text(screen, black, font, 327, 320, "+   =")
+    load_text(screen, Veriables.white, font, 327, 320, "+   =")
 
     # load pause menu object
     pause_box = pygame.Surface((50, 50))
-    load_shape(screen, (100, 100, 100), 400, 245, pause_box)
+    load_shape(screen, Veriables.grey, 400, 245, pause_box)
 
     # load pause menu object
     pause_box = pygame.Surface((20, 20))
-    load_shapes(screen, ((0, 0, 255), (0, 255, 0), (0, 255, 255)), (300, 330, 350, 330, 400, 330), pause_box)
+    load_shapes(screen, (Veriables.blue, Veriables.green, Veriables.light_blue), (300, 330, 350, 330, 400, 330), pause_box)
 
     # draws the circle
     circle_surface = pygame.Surface((30, 30))
     circle_outside = pygame.draw.circle(circle_surface, (220, 0, 20), (15, 15), 15)
-    circle_inside = pygame.draw.circle(circle_surface, (0, 0, 0), (15, 15), 13)
+    circle_inside = pygame.draw.circle(circle_surface, Veriables.black, (15, 15), 13)
     circle = circle_surface.convert()
-    circle.set_colorkey((0, 0, 0))
+    circle.set_colorkey(Veriables.black)
     screen.blit(circle, (205, 255))
 
     # load the texts of the pause menu
     font2 = pygame.font.SysFont("calibri", 25)
     colors1 = [(100, 255, 100), (100, 255, 100), (255, 100, 100), (100, 100, 255), (100, 255, 100), (255, 100, 100),
-               (100, 100, 255), (255, 100, 100), (100, 100, 255), black]
+               (100, 100, 255), (255, 100, 100), (100, 100, 255), Veriables.white]
     xys = [80, 225, 80, 355, 270, 100, 80, 125, 80, 150, 80, 175, 80, 200, 80, 305, 80, 330, 80, 375]
     texts = ["Hit R to restart", "To change:                   A      D      Your color", "Game Rules:",
              "Reach to 25 points, earn points by selecting ", "presents- you can only select presents while the",
@@ -167,8 +171,8 @@ def restart():
     pygame.init()
     screen = pygame.display.set_mode((640, 480), 0, 32)
     pygame.display.set_caption("COLORUSH")
-    fill_box_1 = (255, 0, 0)
-    fill_box_2 = (255, 0, 0)
+    fill_box_1 = Veriables.red
+    fill_box_2 = Veriables.red
     rush_title_size = 20
     space_bar = False
     grey_has_been_found = False
@@ -179,10 +183,10 @@ def restart():
 
     back = pygame.Surface((640, 480))
     background = back.convert()
-    background.fill((0, 0, 0))
+    background.fill(Veriables.black)
     bar = pygame.Surface((50, 10))
     bar1 = bar.convert()
-    bar1.fill((0, 0, 255))
+    bar1.fill(Veriables.blue)
     bar1_x = 300
     bar1_y = 440
     circle_x, circle_y = 307.5, 232.5
@@ -241,19 +245,19 @@ def game_handler():
                     elif event.key == K_d:
                         index_of_color2 = (index_of_color2 + 1) % 3
                         if index_of_color2 == 0:
-                            fill_box_2 = (255, 0, 0)
+                            fill_box_2 = Veriables.red
                         elif index_of_color2 == 1:
-                            fill_box_2 = (0, 255, 0)
+                            fill_box_2 = Veriables.green
                         elif index_of_color2 == 2:
-                            fill_box_2 = (0, 0, 255)
+                            fill_box_2 = Veriables.blue
                     if event.key == K_a:
                         index_of_color = (index_of_color + 1) % 3
                         if index_of_color == 0:
-                            fill_box_1 = (255, 0, 0)
+                            fill_box_1 = Veriables.red
                         elif index_of_color == 1:
-                            fill_box_1 = (0, 255, 0)
+                            fill_box_1 = Veriables.green
                         elif index_of_color == 2:
-                            fill_box_1 = (0, 0, 255)
+                            fill_box_1 = Veriables.blue
                     if event.key == K_LEFT:
                         try:
                             bar1_move = -ai_speed
@@ -419,8 +423,8 @@ class Present:
 
 prepare_game_workspace()
 
-fill_box_1 = (255, 0, 0)
-fill_box_2 = (255, 0, 0)
+fill_box_1 = Veriables.red
+fill_box_2 = Veriables.red
 i = 0
 rush_title_size = 20
 space_bar = False
@@ -451,8 +455,8 @@ def update_screen():
         real_color[2] = 255
     bar1.fill(real_color)
     if space_bar:
-        real_color = [255, 255, 255]
-        bar1.fill([255, 255, 255])
+        real_color = Veriables.white
+        bar1.fill(Veriables.white)
     if grey_has_been_found:
         real_color = [100, 100, 100]
         bar1.fill([100, 100, 100])
@@ -468,8 +472,8 @@ def update_screen():
                 real_color[2] = 255
             bar1.fill(real_color)
             if space_bar:
-                real_color = [255, 255, 255]
-                bar1.fill([255, 255, 255])
+                real_color = Veriables.white
+                bar1.fill(Veriables.white)
 
     global set_lose_2
 
@@ -479,14 +483,14 @@ def update_screen():
     if you_lose:
         win_message = ":'("
         bar1_move = 0
-        load_text(screen, (255, 0, 0), font, 250, 100, "YOU LOSE")
+        load_text(screen, Veriables.red, font, 250, 100, "YOU LOSE")
         lose_present = Present()
         lose_present.set_lose()
         presents.append(lose_present)
 
     if you_win:
         bar1_move = 0
-        load_text(screen, (255, 255, 0), font, 250, 100, "YOU WIN")
+        load_text(screen, Veriables.yellow, font, 250, 100, "YOU WIN")
         presents.append(Present())
 
     if grey_counter == 0:
@@ -495,12 +499,12 @@ def update_screen():
 
     index_box = pygame.Surface((20, 20))
 
-    load_texts(screen, [black, black], font, [40, 5, 10, 28], ["+     =", "A    D "])
+    load_texts(screen, [Veriables.white, Veriables.white], font, [40, 5, 10, 28], ["+     =", "A    D "])
     font2 = pygame.font.SysFont("calibri", 20)
-    load_text(screen, black, font2, 10, 62, "P = Instructions/Pause")
+    load_text(screen, Veriables.white, font2, 10, 62, "P = Instructions/Pause")
 
     # Loads the texts of the timer
-    load_texts(screen, [(100, 255, 255), black], font, [580, 10, 484, 10], [str(counter).rjust(3), "Timer:"])
+    load_texts(screen, [(100, 255, 255), Veriables.white], font, [580, 10, 484, 10], [str(counter).rjust(3), "Timer:"])
 
     if grey_counter:
         font2 = pygame.font.SysFont("calibri", rush_title_size)
@@ -512,18 +516,18 @@ def update_screen():
     xys = [10, 10, 70, 10, 130, 10]
     load_shapes(screen, colors, xys, index_box)
 
-    score1 = font.render(str(total_score), True, (0, 255, 255))
+    score1 = font.render(str(total_score), True, Veriables.light_blue)
     screen.blit(score1, (280, 10))
-    score6 = font.render(win_message, True, (255, 0, 255))
+    score6 = font.render(win_message, True, Veriables.pink)
     screen.blit(score6, (320, 10))
 
 
 back = pygame.Surface((640, 480))
 background = back.convert()
-background.fill((0, 0, 0))
+background.fill(Veriables.black)
 bar = pygame.Surface((50, 10))
 bar1 = bar.convert()
-bar1.fill((0, 0, 255))
+bar1.fill(Veriables.blue)
 bar1_x = 300
 bar1_y = 440
 circle_x, circle_y = 307.5, 232.5
