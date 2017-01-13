@@ -14,12 +14,18 @@ zvikiCounter = 0
 pause = False
 screen = 0
 
+
+# TODO: use PyCharm Code -> Reformat code, Auto-Indent lines & optimize imports
+
+# TODO: run pycharm inspect project and fix
+
 def update_presents():
     global total_score, setlose2, youlose, youwin, zvikiCounter, screen, fillbox2, fillbox, i, rushsize, spacebar, zviki_has_been_found, counter, text, font
     global bar1_x, bar1_y, circle_x, circle_y, bar1_move, bar2_move, speed_x, speed_circ, speed_y, clock, clock_presents, index_of_color, right, left, presents, balls
     global index_of_color2, try1, winmessage, pause
     if len(presents)!=0:
         for ex_present in presents:
+            # TODO: move (255, 255, 255) to variable
             if ex_present.color!=(255,255,255):
                 if youlose and setlose2:
                     ex_present.set_lose()
@@ -32,8 +38,12 @@ def update_presents():
                 rectpresent = rt.convert()
                 rectpresent.fill(ex_present.color)
                 #print bar1_y
+
+                # TODO: looks lime you can simplify this by using python 'min_limit < x < max_limit' syntax
                 if not youlose and not youwin and ex_present.y < bar1_y and ex_present.y+50 > bar1_y  and bar1_x-50 < ex_present.x and bar1_x +50 > ex_present.x:
                     if realcolor == [100, 100, 100]:
+
+                        # TODO: is it duplication here?
                         presents.remove(ex_present)
                         try:
                             presents.remove(ex_present)
@@ -86,7 +96,7 @@ def seem_impresive():
      print bin(bla2*bla2), bla, bla+bla2
 
 def draw_pause_menu():
-    
+
     pause_box = pygame.Surface((500,300))
     load_shape(screen, (50, 50, 50), 75, 100, pause_box)
 
@@ -177,6 +187,7 @@ def load_text(screen, color, font, x, y, text):
     screen.blit(loaded_text, (x, y))
 
 def load_texts(screen, colors, font, xys, texts):
+    # TODO: use enumerate instead (google how to use it!)
     for i in range (0, len(texts)):
         loaded_text = font.render((texts[i]), True, colors[i])
         screen.blit(loaded_text, (xys[i*2], xys[i*2+1]))
