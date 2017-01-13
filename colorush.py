@@ -473,8 +473,8 @@ def update_screen():
 
     global set_lose_2
 
-    update_death_balls()
     update_presents()
+    update_death_balls()
 
     if you_lose:
         win_message = ":'("
