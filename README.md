@@ -1,2 +1,2 @@
-# COLORUSH---a-pygame-game
-COLORUSH -  an arcade game of colors
+# Colorush - A pygame game
+# Colorush is an arcade game of colors.
