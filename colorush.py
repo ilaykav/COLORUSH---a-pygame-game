@@ -15,15 +15,28 @@ grey_counter = 0
 pause = False
 screen = 0
 
+
+# TODO: delete completed todos
+
+
+# TODO: seperate files (generally classes / or a bunch of functions)
+
+
 # TODO: use PyCharm Code -> Reformat code, Auto-Indent lines & optimize imports - V
 
 # TODO: run pycharm inspect project and fix - V
 
 
+# TODO: this seems like types of colors. name accordingly?
+
+# TODO: what about the other bunch or random vars?
 class Variables():
+    # TODO: ilay, please. In what way is the next line readable?
     white, black, grey, red, green, blue, light_blue, yellow, pink = (255, 255, 255), (0, 0, 0), (100, 100, 100), \
-                                                                     (255, 0, 0), (0, 255, 0),\
-                                                (0, 0, 255), (0, 255, 255), (255, 255, 0), (255, 0, 255)
+                                                                     (255, 0, 0), (0, 255, 0), \
+                                                                     (0, 0, 255), (0, 255, 255), (255, 255, 0), (
+                                                                     255, 0, 255)
+
 
 def update_presents():
     global total_score, set_lose_2, you_lose, you_win, grey_counter, screen, fill_box_2, fill_box_1, i, \
@@ -50,7 +63,7 @@ def update_presents():
                 # TODO: looks lime you can simplify this by using python 'min_limit < x < max_limit' syntax - V
 
                 if not you_lose and not you_win and bar1_y - 50 < ex_present.y < bar1_y and \
-                                                        bar1_x - 50 < ex_present.x < bar1_x + 50:
+                                                bar1_x - 50 < ex_present.x < bar1_x + 50:
                     if grey_has_been_found:
                         # TODO: is it duplication here? - V
                         try:
@@ -94,7 +107,7 @@ def update_death_balls():
 
             global you_lose
             if not you_lose and not you_win and bar1_y - 30 < ball.y < bar1_y and \
-                                        bar1_x - 30 < ball.x < bar1_x + 50:
+                                            bar1_x - 30 < ball.x < bar1_x + 50:
                 balls.remove(ball)
                 you_lose = True
 
@@ -121,7 +134,8 @@ def draw_pause_menu():
 
     # load pause menu object
     pause_box = pygame.Surface((20, 20))
-    load_shapes(screen, (Variables.blue, Variables.green, Variables.light_blue), (300, 330, 350, 330, 400, 330), pause_box)
+    load_shapes(screen, (Variables.blue, Variables.green, Variables.light_blue), (300, 330, 350, 330, 400, 330),
+                pause_box)
 
     # draws the circle
     circle_surface = pygame.Surface((30, 30))
@@ -217,12 +231,14 @@ def load_texts(load_screen, load_colors, load_font, load_xys, loaded_texts):
 
 
 def game_handler():
+    # TODO: you can create a game state class with all of the globals, its better then all of the globals. It should be in a seperate file.
     global total_score, set_lose_2, you_lose, you_win, grey_counter, screen, fill_box_2, fill_box_1, i, \
         rush_title_size, space_bar, grey_has_been_found, counter, text, font
     global bar1_x, bar1_y, circle_x, circle_y, bar1_move, bar2_move, speed_x, speed_y, clock, clock_presents, \
         index_of_color, right, left, presents, balls
     global index_of_color2, try1, win_message, pause
     while True:
+        # TODO: the event handeler below has some balagan. try to structure it a clearer way. One possebility is - creating a dict mapping (event_type -> handeling_function) then just call that. Also the keyboard keys.
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
@@ -294,6 +310,9 @@ def game_handler():
 
                         right = False
 
+
+        # TODO: structure werid game logic below?
+
         if bar1_x < 0:
             if bar1_move < 0:
                 bar1_move = 0
@@ -315,7 +334,6 @@ def game_handler():
             chance = 100
 
         if mom < chance:
-
             presents.append(Present())
 
         if not grey_has_been_found and mom < chance - 28:  # take the chance whether to make a death ball or noy
